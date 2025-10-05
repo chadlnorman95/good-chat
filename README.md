@@ -32,15 +32,15 @@ cd better-chatbot
 
 # 2. (Optional) Install pnpm if you don't have it
 
-npm install -g pnpm
+cd better-chatbot
 
 # 3. Install dependencies
 
-pnpm i
+cd better-chatbot
 
 # 4. (Optional) Start a local PostgreSQL instance
 
-pnpm docker:pg
+cd better-chatbot
 
 # If you already have your own PostgreSQL running, you can skip this step.
 # In that case, make sure to update the PostgreSQL URL in your .env file.
@@ -290,7 +290,7 @@ pnpm db:migrate
 
 
 # Run app locally
-pnpm dev   # or: pnpm build && pnpm start
+pnpm docker-compose:up  # or: pnpm build && pnpm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to get started.

@@ -41,7 +41,7 @@ export async function GET() {
 
   const result = servers.map((server) => {
     const mem = memoryMap.get(server.id);
-    const info = mem?.getInfo();
+    const info = (mem as any)?.getInfo?.();
     const mcpInfo: MCPServerInfo = {
       ...server,
       enabled: info?.enabled ?? true,

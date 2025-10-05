@@ -1,13 +1,11 @@
 import { createDbBasedMCPConfigsStorage } from "./db-mcp-config-storage";
 import { createFileBasedMCPConfigsStorage } from "./fb-mcp-config-storage";
-import {
-  createMCPClientsManager,
-  type MCPClientsManager,
-} from "./create-mcp-clients-manager";
+import { createMCPClientsManager } from "./create-mcp-clients-manager";
 import { FILE_BASED_MCP_CONFIG } from "lib/const";
 declare global {
   // eslint-disable-next-line no-var
-  var __mcpClientsManager__: MCPClientsManager;
+  // use any to avoid cross-package type mismatch for global singleton
+  var __mcpClientsManager__: any;
 }
 
 if (!globalThis.__mcpClientsManager__) {
@@ -15,11 +13,17 @@ if (!globalThis.__mcpClientsManager__) {
   const storage = FILE_BASED_MCP_CONFIG
     ? createFileBasedMCPConfigsStorage()
     : createDbBasedMCPConfigsStorage();
-  globalThis.__mcpClientsManager__ = createMCPClientsManager(storage);
+  // assign as any to avoid type mismatch across module boundaries
+  (globalThis as any).__mcpClientsManager__ = createMCPClientsManager(
+    storage,
+  ) as any;
 }
 
 export const initMCPManager = async () => {
-  return globalThis.__mcpClientsManager__.init();
+  if (!(globalThis as any).__mcpClientsManager__) {
+    throw new Error("MCP clients manager is not initialized");
+  }
+  return (globalThis as any).__mcpClientsManager__.init();
 };
 
-export const mcpClientsManager = globalThis.__mcpClientsManager__;
+export const mcpClientsManager = (globalThis as any).__mcpClientsManager__;

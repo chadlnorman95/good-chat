@@ -18,6 +18,12 @@ export default () => {
     experimental: {
       taint: true,
       authInterrupts: true,
+      serverActions: {
+        // domains only, no protocol
+        allowedOrigins: ["localhost:3000", "*.app.github.dev"],
+        // legacy option for older Next builds
+        allowedForwardedHosts: ["*.app.github.dev"],
+      },
     },
   };
   const withNextIntl = createNextIntlPlugin();
