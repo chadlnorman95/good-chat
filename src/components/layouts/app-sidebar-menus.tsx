@@ -19,15 +19,20 @@ import { useTranslations } from "next-intl";
 import { MCPIcon } from "ui/mcp-icon";
 import { WriteIcon } from "ui/write-icon";
 import {
+  BarChart3,
+  BookOpen,
+  FileText,
   FolderOpenIcon,
   FolderSearchIcon,
   PlusIcon,
+  Search,
   Waypoints,
 } from "lucide-react";
 import { useCallback, useState } from "react";
 import { Skeleton } from "ui/skeleton";
 import { useArchives } from "@/hooks/queries/use-archives";
 import { ArchiveDialog } from "../archive-dialog";
+import { FileProcessorDialog } from "../file-processing/file-processor-dialog";
 import { getIsUserAdmin } from "lib/user/utils";
 import { BasicUser } from "app-types/user";
 import { AppSidebarAdmin } from "./app-sidebar-menu-admin";
@@ -72,6 +77,56 @@ export function AppSidebarMenus({ user }: { user?: BasicUser }) {
                       </span>
                     ))}
                   </div>
+                </SidebarMenuButton>
+              </Link>
+            </SidebarMenuItem>
+          </Tooltip>
+        </SidebarMenu>
+        <SidebarMenu>
+          <Tooltip>
+            <SidebarMenuItem>
+              <Link href="/search">
+                <SidebarMenuButton className="font-semibold">
+                  <Search className="size-4" />
+                  Search
+                </SidebarMenuButton>
+              </Link>
+            </SidebarMenuItem>
+          </Tooltip>
+        </SidebarMenu>
+        <SidebarMenu>
+          <Tooltip>
+            <SidebarMenuItem>
+              <Link href="/analytics">
+                <SidebarMenuButton className="font-semibold">
+                  <BarChart3 className="size-4" />
+                  Analytics
+                </SidebarMenuButton>
+              </Link>
+            </SidebarMenuItem>
+          </Tooltip>
+        </SidebarMenu>
+        <SidebarMenu>
+          <Tooltip>
+            <SidebarMenuItem>
+              <FileProcessorDialog
+                trigger={
+                  <SidebarMenuButton className="font-semibold">
+                    <FileText className="size-4" />
+                    Process Files
+                  </SidebarMenuButton>
+                }
+              />
+            </SidebarMenuItem>
+          </Tooltip>
+        </SidebarMenu>
+        <SidebarMenu>
+          <Tooltip>
+            <SidebarMenuItem>
+              <Link href="/knowledge-base">
+                <SidebarMenuButton className="font-semibold">
+                  <BookOpen className="size-4" />
+                  Knowledge Base
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>

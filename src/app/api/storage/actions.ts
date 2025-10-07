@@ -47,13 +47,27 @@ export async function checkStorageAction(): Promise<StorageCheckResult> {
 
   // 2. Check S3 configuration
   if (storageDriver === "s3") {
-    return {
-      isValid: false,
-      error: "S3 storage is not yet implemented",
-      solution:
-        "S3 storage support is coming soon.\n" +
-        "For now, please use Vercel Blob (default)",
-    };
+    const requiredEnvVars = [
+      "FILE_STORAGE_S3_BUCKET",
+      "AWS_ACCESS_KEY_ID", 
+      "AWS_SECRET_ACCESS_KEY"
+    ];
+    
+    const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
+    
+    if (missingVars.length > 0) {
+      return {
+        isValid: false,
+        error: `Missing required S3 environment variables: ${missingVars.join(", ")}`,
+        solution:
+          "Please set the following environment variables:\n" +
+          "- FILE_STORAGE_S3_BUCKET: Your S3 bucket name\n" +
+          "- FILE_STORAGE_S3_REGION: AWS region (optional, defaults to us-east-1)\n" +
+          "- AWS_ACCESS_KEY_ID: Your AWS access key\n" +
+          "- AWS_SECRET_ACCESS_KEY: Your AWS secret key\n" +
+          "- FILE_STORAGE_S3_ENDPOINT: Custom endpoint for S3-compatible services (optional)",
+      };
+    }
   }
 
   // 3. Validate storage driver
@@ -64,7 +78,7 @@ export async function checkStorageAction(): Promise<StorageCheckResult> {
       solution:
         "FILE_STORAGE_TYPE must be one of:\n" +
         "- 'vercel-blob' (default)\n" +
-        "- 's3' (coming soon)",
+        "- 's3' (fully supported)",
     };
   }
 
