@@ -24,6 +24,7 @@ import {
   FileText,
   FolderOpenIcon,
   FolderSearchIcon,
+  Key,
   PlusIcon,
   Search,
   Waypoints,
@@ -127,6 +128,18 @@ export function AppSidebarMenus({ user }: { user?: BasicUser }) {
                 <SidebarMenuButton className="font-semibold">
                   <BookOpen className="size-4" />
                   Knowledge Base
+                </SidebarMenuButton>
+              </Link>
+            </SidebarMenuItem>
+          </Tooltip>
+        </SidebarMenu>
+        <SidebarMenu>
+          <Tooltip>
+            <SidebarMenuItem>
+              <Link href="/api-keys">
+                <SidebarMenuButton className="font-semibold">
+                  <Key className="size-4" />
+                  API Keys
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>
