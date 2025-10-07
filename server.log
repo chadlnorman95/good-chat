@@ -17,3 +17,5 @@
 [better-chatbot] ℹ [1770] MCP Manager:  Initializing MCP clients manager
 ✅ MCP Manager initialized successfully
  ✓ Ready in 4.4s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 859ms (168 modules)
