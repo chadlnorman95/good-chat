@@ -5,6 +5,7 @@ import { canCreateMCP } from "lib/auth/client-permissions";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { MCPOverview, RECOMMENDED_MCPS } from "@/components/mcp-overview";
+import { MCPQuickConnect } from "@/components/mcp-quick-connect";
 
 import { Skeleton } from "ui/skeleton";
 
@@ -15,7 +16,7 @@ import { useMcpList } from "@/hooks/queries/use-mcp-list";
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
+import { Loader2, Zap } from "lucide-react";
 import { cn } from "lib/utils";
 import {
   DropdownMenu,
@@ -23,8 +24,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "ui/dropdown-menu";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "ui/dialog";
 import { useRouter } from "next/navigation";
 import { BasicUser } from "app-types/user";
+import { MCPServerConfig } from "types/mcp";
 
 const LightRays = dynamic(() => import("@/components/ui/light-rays"), {
   ssr: false,
@@ -41,6 +44,10 @@ export default function MCPDashboard({ message, user }: MCPDashboardProps) {
 
   // Check if user can create MCP connections using Better Auth permissions
   const canCreate = canCreateMCP(user?.role);
+  
+  // Quick connect state
+  const [showQuickConnect, setShowQuickConnect] = useState(false);
+  const [isConnecting, setIsConnecting] = useState(false);
 
   const {
     data: mcpList,
@@ -81,6 +88,25 @@ export default function MCPDashboard({ message, user }: MCPDashboardProps) {
     params.set("name", mcp.name);
     params.set("config", JSON.stringify(mcp.config));
     router.push(`/mcp/create?${params.toString()}`);
+  };
+
+  const handleQuickConnect = async (config: MCPServerConfig, name: string) => {
+    setIsConnecting(true);
+    try {
+      // Navigate to create page with the config
+      const params = new URLSearchParams();
+      params.set("name", name);
+      params.set("config", JSON.stringify(config));
+      router.push(`/mcp/create?${params.toString()}`);
+      setShowQuickConnect(false);
+      
+      toast.success(`Connecting to ${name}...`);
+    } catch (error) {
+      console.error('Quick connect failed:', error);
+      toast.error('Failed to connect to MCP server');
+    } finally {
+      setIsConnecting(false);
+    }
   };
 
   const particle = useMemo(() => {
@@ -188,6 +214,28 @@ export default function MCPDashboard({ message, user }: MCPDashboardProps) {
                     {t("marketplace")}
                   </Button>
                 </Link>
+              )}
+              {canCreate && (
+                <Dialog open={showQuickConnect} onOpenChange={setShowQuickConnect}>
+                  <DialogTrigger asChild>
+                    <Button
+                      className="font-semibold bg-blue-500/10 border-blue-500/20 text-blue-600 hover:bg-blue-500/20"
+                      variant="outline"
+                    >
+                      <Zap className="size-3.5" />
+                      Quick Connect
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle>Quick Connect to MCP Server</DialogTitle>
+                    </DialogHeader>
+                    <MCPQuickConnect 
+                      onConnect={handleQuickConnect}
+                      isConnecting={isConnecting}
+                    />
+                  </DialogContent>
+                </Dialog>
               )}
               {canCreate && (
                 <Link href="/mcp/create">
