@@ -59,4 +59,4 @@ local-data
 .mcp-config.json
 openai-compatible.config.ts
 certificates
-public/uploads
+public/uploadsserver.log
