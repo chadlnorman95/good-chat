@@ -119,48 +119,50 @@
 }
 
 /* -----------------------------------
-   6-Color Core + Derived Tokens
+   Premium 6-Color Core + Derived Tokens
 ----------------------------------- */
 :root {
-  /* Core 6 */
-  --c0: #0b0c0f; /* ink */
-  --c1: #ffffff; /* paper */
-  --c2: #1f6feb; /* brand */
-  --c3: #ef4444; /* danger */
-  --c4: #10b981; /* success */
-  --c5: #f59e0b; /* warning */
+  /* Premium Core 6 */
+  --c0: #0a0b0e; /* deep ink */
+  --c1: #ffffff; /* pure paper */
+  --c2: #6366f1; /* premium indigo brand */
+  --c3: #f43f5e; /* vibrant rose danger */
+  --c4: #10b981; /* emerald success */
+  --c5: #f59e0b; /* amber warning */
 
-  /* Radius */
-  --radius: 0.75rem;
+  /* Premium Radius */
+  --radius: 1rem;
 
-  /* Base */
-  --background: color-mix(in oklab, var(--c1) 96%, var(--c0) 4%);
+  /* Premium Base Colors */
+  --background: linear-gradient(135deg, 
+    color-mix(in oklab, var(--c1) 98%, var(--c2) 2%) 0%, 
+    color-mix(in oklab, var(--c1) 96%, var(--c0) 4%) 100%);
   --foreground: var(--c0);
 
-  --card: var(--c1);
+  --card: color-mix(in oklab, var(--c1) 99%, var(--c2) 1%);
   --card-foreground: var(--c0);
 
-  --popover: var(--c1);
+  --popover: color-mix(in oklab, var(--c1) 98%, var(--c2) 2%);
   --popover-foreground: var(--c0);
 
-  --primary: var(--c2);
+  --primary: linear-gradient(135deg, var(--c2) 0%, color-mix(in oklab, var(--c2) 85%, var(--c4) 15%) 100%);
   --primary-foreground: var(--c1);
 
-  --secondary: color-mix(in oklab, var(--c1) 94%, var(--c0) 6%);
+  --secondary: color-mix(in oklab, var(--c1) 92%, var(--c2) 8%);
   --secondary-foreground: var(--c0);
 
-  --muted: color-mix(in oklab, var(--c1) 95%, var(--c0) 5%);
-  --muted-foreground: color-mix(in oklab, var(--c0) 65%, var(--c1) 35%);
+  --muted: color-mix(in oklab, var(--c1) 94%, var(--c2) 6%);
+  --muted-foreground: color-mix(in oklab, var(--c0) 60%, var(--c2) 40%);
 
-  --accent: var(--c2);
+  --accent: linear-gradient(135deg, var(--c2) 0%, color-mix(in oklab, var(--c2) 80%, var(--c5) 20%) 100%);
   --accent-foreground: var(--c1);
 
-  --destructive: var(--c3);
+  --destructive: linear-gradient(135deg, var(--c3) 0%, color-mix(in oklab, var(--c3) 85%, var(--c5) 15%) 100%);
   --destructive-foreground: var(--c1);
 
-  --border: color-mix(in oklab, var(--c1) 85%, var(--c0) 15%);
-  --input: color-mix(in oklab, var(--c1) 98%, var(--c0) 2%);
-  --ring: color-mix(in oklab, var(--c2) 55%, var(--c1) 45%);
+  --border: color-mix(in oklab, var(--c1) 88%, var(--c2) 12%);
+  --input: color-mix(in oklab, var(--c1) 97%, var(--c2) 3%);
+  --ring: color-mix(in oklab, var(--c2) 60%, var(--c1) 40%);
 
   /* Charts: brand tints only */
   --chart-1: oklch(from var(--primary) 0.7 c h / 1);
@@ -169,24 +171,30 @@
   --chart-4: oklch(from var(--primary) 0.85 c h / 1);
   --chart-5: oklch(from var(--primary) 0.9 c h / 1);
 
-  /* Sidebar */
-  --sidebar: color-mix(in oklab, var(--c1) 98%, var(--c0) 2%);
+  /* Premium Sidebar */
+  --sidebar: linear-gradient(180deg, 
+    color-mix(in oklab, var(--c1) 97%, var(--c2) 3%) 0%, 
+    color-mix(in oklab, var(--c1) 95%, var(--c0) 5%) 100%);
   --sidebar-foreground: var(--c0);
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: color-mix(in oklab, var(--c1) 96%, var(--c0) 4%);
+  --sidebar-accent: color-mix(in oklab, var(--c1) 94%, var(--c2) 6%);
   --sidebar-accent-foreground: var(--c0);
-  --sidebar-border: var(--border);
+  --sidebar-border: color-mix(in oklab, var(--c1) 85%, var(--c2) 15%);
   --sidebar-ring: var(--ring);
 
-  /* Motion (tighter) */
-  --dur-1: 120ms;
-  --dur-2: 200ms;
+  /* Premium Motion */
+  --dur-1: 150ms;
+  --dur-2: 250ms;
+  --dur-3: 350ms;
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --motion-pop: 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  --motion-lift: 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  --motion-fade: 140ms linear;
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-premium: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --motion-pop: 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-lift: 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-fade: 180ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --motion-spring: 320ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
   /* Density */
   --density-scale: 1;
@@ -202,67 +210,90 @@
     color-mix(in oklab, var(--ring) 70%, transparent 30%);
   --focus-offset: 2px;
 
-  /* Elevation (ink-based) */
-  --shadow-1: 0 1px 2px color-mix(in oklab, var(--c0) 10%, transparent 90%);
-  --shadow-2: 0 4px 10px color-mix(in oklab, var(--c0) 14%, transparent 86%);
-  --shadow-3: 0 8px 18px color-mix(in oklab, var(--c0) 18%, transparent 82%);
-  --shadow-4: 0 12px 28px color-mix(in oklab, var(--c0) 22%, transparent 78%);
-  --shadow-5: 0 18px 38px color-mix(in oklab, var(--c0) 26%, transparent 74%);
+  /* Premium Elevation */
+  --shadow-1: 0 1px 3px color-mix(in oklab, var(--c0) 8%, transparent 92%), 
+              0 1px 2px color-mix(in oklab, var(--c2) 4%, transparent 96%);
+  --shadow-2: 0 4px 12px color-mix(in oklab, var(--c0) 12%, transparent 88%), 
+              0 2px 4px color-mix(in oklab, var(--c2) 6%, transparent 94%);
+  --shadow-3: 0 8px 24px color-mix(in oklab, var(--c0) 16%, transparent 84%), 
+              0 4px 8px color-mix(in oklab, var(--c2) 8%, transparent 92%);
+  --shadow-4: 0 16px 32px color-mix(in oklab, var(--c0) 20%, transparent 80%), 
+              0 8px 16px color-mix(in oklab, var(--c2) 10%, transparent 90%);
+  --shadow-5: 0 24px 48px color-mix(in oklab, var(--c0) 24%, transparent 76%), 
+              0 12px 24px color-mix(in oklab, var(--c2) 12%, transparent 88%);
 
-  /* Glass */
-  --glass-bg: color-mix(in oklab, var(--card) 82%, transparent 18%);
-  --glass-border: color-mix(in oklab, var(--border) 70%, transparent 30%);
+  /* Premium Glass */
+  --glass-bg: color-mix(in oklab, var(--card) 85%, transparent 15%);
+  --glass-border: color-mix(in oklab, var(--border) 60%, transparent 40%);
+  --glass-shadow: 0 8px 32px color-mix(in oklab, var(--c0) 12%, transparent 88%),
+                  0 4px 16px color-mix(in oklab, var(--c2) 8%, transparent 92%),
+                  inset 0 1px 0 color-mix(in oklab, var(--c1) 40%, transparent 60%);
 }
 
-/* Dark */
+/* Premium Dark Mode */
 .dark {
-  --background: color-mix(in oklab, var(--c0) 92%, var(--c1) 8%);
-  --foreground: color-mix(in oklab, var(--c1) 92%, var(--c0) 8%);
+  --background: linear-gradient(135deg, 
+    color-mix(in oklab, var(--c0) 94%, var(--c2) 6%) 0%, 
+    color-mix(in oklab, var(--c0) 92%, var(--c1) 8%) 100%);
+  --foreground: color-mix(in oklab, var(--c1) 94%, var(--c2) 6%);
 
-  --card: color-mix(in oklab, var(--c0) 94%, var(--c1) 6%);
+  --card: color-mix(in oklab, var(--c0) 96%, var(--c2) 4%);
   --card-foreground: var(--foreground);
 
-  --popover: var(--card);
+  --popover: color-mix(in oklab, var(--c0) 95%, var(--c2) 5%);
   --popover-foreground: var(--foreground);
 
-  --primary: color-mix(in oklab, var(--c2) 75%, var(--c1) 25%);
+  --primary: linear-gradient(135deg, 
+    color-mix(in oklab, var(--c2) 80%, var(--c1) 20%) 0%, 
+    color-mix(in oklab, var(--c2) 75%, var(--c4) 25%) 100%);
   --primary-foreground: var(--c0);
 
-  --secondary: color-mix(in oklab, var(--c0) 86%, var(--c1) 14%);
+  --secondary: color-mix(in oklab, var(--c0) 88%, var(--c2) 12%);
   --secondary-foreground: var(--foreground);
 
-  --muted: color-mix(in oklab, var(--c0) 88%, var(--c1) 12%);
-  --muted-foreground: color-mix(in oklab, var(--c1) 65%, var(--c0) 35%);
+  --muted: color-mix(in oklab, var(--c0) 90%, var(--c2) 10%);
+  --muted-foreground: color-mix(in oklab, var(--c1) 70%, var(--c2) 30%);
 
-  --accent: color-mix(in oklab, var(--c2) 70%, var(--c0) 30%);
+  --accent: linear-gradient(135deg, 
+    color-mix(in oklab, var(--c2) 75%, var(--c0) 25%) 0%, 
+    color-mix(in oklab, var(--c2) 70%, var(--c5) 30%) 100%);
   --accent-foreground: var(--foreground);
 
-  --destructive: color-mix(in oklab, var(--c3) 80%, var(--c1) 20%);
+  --destructive: linear-gradient(135deg, 
+    color-mix(in oklab, var(--c3) 85%, var(--c1) 15%) 0%, 
+    color-mix(in oklab, var(--c3) 80%, var(--c5) 20%) 100%);
   --destructive-foreground: var(--c0);
 
-  --border: color-mix(in oklab, var(--c0) 82%, var(--c1) 18%);
-  --input: color-mix(in oklab, var(--c0) 88%, var(--c1) 12%);
-  --ring: color-mix(in oklab, var(--c2) 60%, var(--c0) 40%);
+  --border: color-mix(in oklab, var(--c0) 85%, var(--c2) 15%);
+  --input: color-mix(in oklab, var(--c0) 90%, var(--c2) 10%);
+  --ring: color-mix(in oklab, var(--c2) 70%, var(--c0) 30%);
 
-  --sidebar: color-mix(in oklab, var(--c0) 92%, var(--c1) 8%);
+  --sidebar: linear-gradient(180deg, 
+    color-mix(in oklab, var(--c0) 95%, var(--c2) 5%) 0%, 
+    color-mix(in oklab, var(--c0) 92%, var(--c1) 8%) 100%);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: color-mix(in oklab, var(--c0) 86%, var(--c1) 14%);
+  --sidebar-accent: color-mix(in oklab, var(--c0) 88%, var(--c2) 12%);
   --sidebar-accent-foreground: var(--foreground);
-  --sidebar-border: var(--border);
+  --sidebar-border: color-mix(in oklab, var(--c0) 82%, var(--c2) 18%);
   --sidebar-ring: var(--ring);
 
   /* Stronger ring on dark */
   --focus-outline: 2px solid
     color-mix(in oklab, var(--primary) 80%, var(--c0) 20%);
 
-  /* Darker shadows */
-  --shadow-1: 0 1px 2px color-mix(in oklab, var(--c0) 35%, transparent 65%);
-  --shadow-2: 0 4px 10px color-mix(in oklab, var(--c0) 45%, transparent 55%);
-  --shadow-3: 0 8px 18px color-mix(in oklab, var(--c0) 55%, transparent 45%);
-  --shadow-4: 0 12px 28px color-mix(in oklab, var(--c0) 60%, transparent 40%);
-  --shadow-5: 0 18px 38px color-mix(in oklab, var(--c0) 65%, transparent 35%);
+  /* Premium Dark Shadows */
+  --shadow-1: 0 2px 4px color-mix(in oklab, var(--c0) 40%, transparent 60%), 
+              0 1px 2px color-mix(in oklab, var(--c2) 8%, transparent 92%);
+  --shadow-2: 0 6px 16px color-mix(in oklab, var(--c0) 50%, transparent 50%), 
+              0 3px 6px color-mix(in oklab, var(--c2) 12%, transparent 88%);
+  --shadow-3: 0 12px 32px color-mix(in oklab, var(--c0) 60%, transparent 40%), 
+              0 6px 12px color-mix(in oklab, var(--c2) 16%, transparent 84%);
+  --shadow-4: 0 20px 40px color-mix(in oklab, var(--c0) 65%, transparent 35%), 
+              0 10px 20px color-mix(in oklab, var(--c2) 20%, transparent 80%);
+  --shadow-5: 0 28px 56px color-mix(in oklab, var(--c0) 70%, transparent 30%), 
+              0 14px 28px color-mix(in oklab, var(--c2) 24%, transparent 76%);
 }
 
 /* -----------------------------------
@@ -280,11 +311,14 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background: var(--background);
+    color: var(--foreground);
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-variant-ligatures: contextual;
   }
 
   button {
@@ -349,23 +383,42 @@
     border-color: var(--ring);
   }
 
-  /* Buttons baseline */
+  /* Premium Buttons */
   button {
     background: var(--secondary);
     color: var(--secondary-foreground);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 0.5rem 0.75rem;
-    transition: transform var(--dur-1) var(--ease-out), box-shadow var(--dur-1)
-      var(--ease-out);
+    padding: 0.625rem 1rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+    transition: all var(--dur-2) var(--ease-premium);
+    position: relative;
+    overflow: hidden;
+  }
+  button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left var(--dur-3) var(--ease-out);
   }
   button:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-1);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-2);
+    border-color: color-mix(in oklab, var(--border) 70%, var(--primary) 30%);
+  }
+  button:hover::before {
+    left: 100%;
   }
   button:active {
-    transform: translateY(0);
-    box-shadow: none;
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: var(--shadow-1);
+    transition: all var(--dur-1) var(--ease-out);
   }
 
   /* Page and sidebar scrollbars: hidden, still scrollable */
@@ -476,6 +529,69 @@
     animation: wiggle 2.5s ease-in-out infinite;
   }
 
+  /* Premium Animations */
+  @keyframes premium-glow {
+    0%, 100% {
+      box-shadow: var(--shadow-2);
+    }
+    50% {
+      box-shadow: var(--shadow-3), 
+                  0 0 20px color-mix(in oklab, var(--primary) 20%, transparent 80%);
+    }
+  }
+
+  @keyframes premium-float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  @keyframes premium-pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes premium-shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .premium-glow {
+    animation: premium-glow 3s ease-in-out infinite;
+  }
+
+  .premium-float {
+    animation: premium-float 6s ease-in-out infinite;
+  }
+
+  .premium-pulse {
+    animation: premium-pulse 2s ease-in-out infinite;
+  }
+
+  .premium-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--primary) 10%, transparent 90%),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: premium-shimmer 2s infinite;
+  }
+
   .react-flow__node-default {
     @apply bg-transparent! text-foreground! p-0! border-none! text-sm! text-left! shadow-none!;
   }
@@ -501,22 +617,22 @@
    Components
 ----------------------------------- */
 @layer components {
-  /* Floating Chatbar */
+  /* Premium Floating Chatbar */
   .floating-chatbar {
     position: fixed;
     inset: auto 0 0 0;
     z-index: 50;
-    background: var(--card);
+    background: var(--glass-bg);
     color: var(--card-foreground);
-    box-shadow: var(--shadow-3);
-    border-top-left-radius: calc(var(--radius) + 6px);
-    border-top-right-radius: calc(var(--radius) + 6px);
-    padding: calc(0.75rem * var(--density-scale)) 1.25rem;
-    transition: box-shadow var(--motion-lift), transform var(--motion-lift),
-      background-color var(--motion-fade);
-    backdrop-filter: blur(6px);
-    border-top: 1px solid
-      color-mix(in oklab, var(--card) 88%, var(--hairline) 12%);
+    box-shadow: var(--glass-shadow);
+    border-top-left-radius: calc(var(--radius) + 8px);
+    border-top-right-radius: calc(var(--radius) + 8px);
+    padding: calc(1rem * var(--density-scale)) 1.5rem;
+    transition: all var(--motion-lift);
+    backdrop-filter: blur(20px) saturate(1.8);
+    border-top: 1px solid var(--glass-border);
+    border-left: 1px solid var(--glass-border);
+    border-right: 1px solid var(--glass-border);
   }
   .scroll-elevated {
     box-shadow: var(--shadow-5);
@@ -524,8 +640,9 @@
   }
   .floating-chatbar:hover,
   .floating-chatbar:focus-within {
-    box-shadow: var(--shadow-4);
-    transform: translateY(-4px);
+    box-shadow: var(--shadow-5);
+    transform: translateY(-6px) scale(1.01);
+    backdrop-filter: blur(24px) saturate(2);
   }
   .floating-chatbar--padded {
     padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
@@ -548,23 +665,40 @@
     border-color: var(--ring);
   }
 
-  /* Thin Cards */
+  /* Premium Cards */
   .card-thin {
     background: var(--card);
     color: var(--card-foreground);
-    border-radius: calc(var(--radius) - 2px);
-    padding: calc(0.75rem * var(--density-scale))
-      calc(1rem * var(--density-scale));
-    border: 1px solid color-mix(in oklab, var(--border) 85%, transparent 15%);
+    border-radius: var(--radius);
+    padding: calc(1rem * var(--density-scale))
+      calc(1.25rem * var(--density-scale));
+    border: 1px solid color-mix(in oklab, var(--border) 80%, transparent 20%);
     box-shadow: var(--shadow-1);
-    transition: box-shadow var(--motion-lift), transform var(--motion-lift),
-      border-color var(--motion-fade);
+    transition: all var(--motion-lift);
     overflow: hidden;
+    position: relative;
+  }
+  .card-thin::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      color-mix(in oklab, var(--primary) 30%, transparent 70%), 
+      transparent);
+    opacity: 0;
+    transition: opacity var(--dur-2) var(--ease-out);
   }
   .card-thin:hover {
-    box-shadow: var(--shadow-2);
-    transform: translateY(-3px);
-    border-color: color-mix(in oklab, var(--border) 100%, var(--card) 0%);
+    box-shadow: var(--shadow-3);
+    transform: translateY(-4px) scale(1.02);
+    border-color: color-mix(in oklab, var(--border) 60%, var(--primary) 40%);
+  }
+  .card-thin:hover::before {
+    opacity: 1;
   }
   .card-thin--ultra {
     padding: calc(0.5rem * var(--density-scale))
@@ -574,15 +708,35 @@
     font-size: 0.95rem;
   }
 
-  /* Glass */
+  /* Premium Glass */
   .surface-glass {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(8px) saturate(1.05);
-    box-shadow: 0 6px 18px color-mix(in oklab, var(--c0) 12%, transparent 88%);
-    border-radius: calc(var(--radius) - 2px);
-    transition: background-color var(--dur-2) var(--ease-out), box-shadow
-      var(--dur-2) var(--ease-out);
+    backdrop-filter: blur(16px) saturate(1.8);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius);
+    transition: all var(--dur-2) var(--ease-premium);
+    position: relative;
+  }
+  .surface-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, 
+      color-mix(in oklab, var(--primary) 20%, transparent 80%), 
+      transparent 50%, 
+      color-mix(in oklab, var(--primary) 10%, transparent 90%));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+  }
+  .surface-glass:hover {
+    backdrop-filter: blur(20px) saturate(2);
+    box-shadow: var(--shadow-4);
+    transform: translateY(-2px);
   }
 
   /* Text helpers */
@@ -910,13 +1064,61 @@
     box-shadow: var(--shadow-1);
   }
 
-  /* Text polish */
+  /* Premium Text Polish */
   .prose {
     max-width: 70ch;
+    line-height: 1.7;
+    font-feature-settings: "kern", "liga", "clig", "calt";
   }
   small,
   .text-xs {
-    color: color-mix(in oklab, var(--foreground) 80%, var(--card) 20%);
+    color: color-mix(in oklab, var(--foreground) 75%, var(--card) 25%);
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+
+  /* Premium Utility Classes */
+  .premium-gradient {
+    background: linear-gradient(135deg, 
+      var(--primary) 0%, 
+      color-mix(in oklab, var(--primary) 80%, var(--accent) 20%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .premium-border {
+    border: 1px solid;
+    border-image: linear-gradient(135deg, 
+      color-mix(in oklab, var(--primary) 30%, transparent 70%), 
+      transparent 50%, 
+      color-mix(in oklab, var(--primary) 20%, transparent 80%)) 1;
+  }
+
+  .premium-shadow {
+    box-shadow: var(--shadow-3), 
+                0 0 0 1px color-mix(in oklab, var(--primary) 10%, transparent 90%);
+  }
+
+  .premium-backdrop {
+    backdrop-filter: blur(20px) saturate(1.8);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+  }
+
+  .premium-interactive {
+    transition: all var(--dur-2) var(--ease-premium);
+    cursor: pointer;
+  }
+
+  .premium-interactive:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-3);
+  }
+
+  .premium-interactive:active {
+    transform: translateY(-1px) scale(1.01);
+    transition: all var(--dur-1) var(--ease-out);
   }
 }
 

@@ -233,11 +233,13 @@ export function MCPQuickConnect({ onConnect, isConnecting = false }: MCPQuickCon
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold flex items-center gap-2">
-            <Zap className="h-6 w-6 text-blue-600" />
+          <h2 className="text-3xl font-bold flex items-center gap-3 premium-gradient">
+            <div className="p-2 rounded-xl bg-primary/10 premium-glow">
+              <Zap className="h-7 w-7 text-primary" />
+            </div>
             Quick Connect to MCP
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-lg mt-2">
             Easily connect to MCP servers via URL or choose from popular templates
           </p>
         </div>
@@ -261,10 +263,12 @@ export function MCPQuickConnect({ onConnect, isConnecting = false }: MCPQuickCon
 
         {/* Quick Connect Tab */}
         <TabsContent value="quick-connect" className="space-y-4">
-          <Card>
+          <Card className="premium-interactive surface-glass">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Globe className="h-5 w-5" />
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <Globe className="h-5 w-5 text-primary" />
+                </div>
                 Connect via URL
               </CardTitle>
             </CardHeader>
@@ -366,11 +370,12 @@ export function MCPQuickConnect({ onConnect, isConnecting = false }: MCPQuickCon
                 </Alert>
               )}
 
-              <div className="flex justify-end space-x-2">
+              <div className="flex justify-end space-x-3">
                 <Button
                   variant="outline"
                   onClick={() => testConnection({ url: quickConnectUrl, headers: quickConnectHeaders ? JSON.parse(quickConnectHeaders) : {} })}
                   disabled={!quickConnectUrl || isTesting}
+                  className="premium-interactive"
                 >
                   {isTesting ? (
                     <>
@@ -387,6 +392,7 @@ export function MCPQuickConnect({ onConnect, isConnecting = false }: MCPQuickCon
                 <Button
                   onClick={handleQuickConnect}
                   disabled={!quickConnectUrl || isConnecting}
+                  className="premium-interactive premium-shadow"
                 >
                   {isConnecting ? (
                     <>
@@ -449,8 +455,8 @@ export function MCPQuickConnect({ onConnect, isConnecting = false }: MCPQuickCon
                 ))
               ) : (
                 filteredTemplates.map((template) => (
-                  <Card key={template.id} className="hover:shadow-md transition-shadow">
-                    <CardContent className="p-4">
+                  <Card key={template.id} className="premium-interactive premium-float" style={{ animationDelay: `${Math.random() * 0.5}s` }}>
+                    <CardContent className="p-5">
                       <div className="flex items-start justify-between mb-2">
                         <div className="flex items-center space-x-2">
                           <span className="text-2xl">{template.icon}</span>
@@ -497,6 +503,7 @@ export function MCPQuickConnect({ onConnect, isConnecting = false }: MCPQuickCon
                         <Button
                           size="sm"
                           onClick={() => handleTemplateConnect(template)}
+                          className="premium-interactive premium-shimmer"
                         >
                           <Plus className="h-3 w-3 mr-1" />
                           Use Template

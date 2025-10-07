@@ -219,16 +219,16 @@ export default function MCPDashboard({ message, user }: MCPDashboardProps) {
                 <Dialog open={showQuickConnect} onOpenChange={setShowQuickConnect}>
                   <DialogTrigger asChild>
                     <Button
-                      className="font-semibold bg-blue-500/10 border-blue-500/20 text-blue-600 hover:bg-blue-500/20"
+                      className="font-semibold bg-primary/10 border-primary/20 text-primary hover:bg-primary/20 premium-interactive premium-glow"
                       variant="outline"
                     >
-                      <Zap className="size-3.5" />
+                      <Zap className="size-4" />
                       Quick Connect
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+                  <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto surface-glass">
                     <DialogHeader>
-                      <DialogTitle>Quick Connect to MCP Server</DialogTitle>
+                      <DialogTitle className="text-2xl premium-gradient">Quick Connect to MCP Server</DialogTitle>
                     </DialogHeader>
                     <MCPQuickConnect 
                       onConnect={handleQuickConnect}
