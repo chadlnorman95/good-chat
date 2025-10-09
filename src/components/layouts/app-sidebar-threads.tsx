@@ -11,7 +11,7 @@ import {
 import { SidebarGroupContent, SidebarMenu, SidebarMenuItem } from "ui/sidebar";
 import { SidebarGroup } from "ui/sidebar";
 import { ThreadDropdown } from "../thread-dropdown";
-import { ChevronDown, ChevronUp, MoreHorizontal, Trash } from "lucide-react";
+import { ChevronDown, ChevronUp, MoreHorizontal, Search, Trash } from "lucide-react";
 import { useMounted } from "@/hooks/use-mounted";
 import { appStore } from "@/app/store";
 import { Button } from "ui/button";
@@ -304,18 +304,27 @@ export function AppSidebarThreads() {
       {hasExcessThreads && (
         <SidebarMenu>
           <SidebarMenuItem>
-            {/* TODO: Later implement a dedicated search/all chats page instead of this expand functionality */}
-            <div className="w-full flex px-4">
+            <div className="w-full flex px-4 gap-2">
               <Button
                 variant="secondary"
                 size="sm"
-                className="w-full hover:bg-input! justify-start"
+                className="flex-1 hover:bg-input! justify-start"
                 onClick={() => setIsExpanded(!isExpanded)}
               >
                 <MoreHorizontal className="mr-2" />
                 {isExpanded ? t("showLessChats") : t("showAllChats")}
                 {isExpanded ? <ChevronUp /> : <ChevronDown />}
               </Button>
+              <Link href="/search">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="hover:bg-input! justify-center"
+                  title="Search all chats"
+                >
+                  <Search className="h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </SidebarMenuItem>
         </SidebarMenu>

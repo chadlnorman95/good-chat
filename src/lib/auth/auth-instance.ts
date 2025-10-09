@@ -47,40 +47,44 @@ const options = {
       enabled: true,
     },
   },
-  database: drizzleAdapter(pgDb, {
-    provider: "pg",
-    schema: {
-      user: UserTable,
-      session: SessionTable,
-      account: AccountTable,
-      verification: VerificationTable,
-    },
-  }),
-  databaseHooks: {
-    user: {
-      create: {
-        before: async (user) => {
-          // This hook ONLY runs during user creation (sign-up), not on sign-in
-          // Use our optimized getIsFirstUser function with caching
-          const isFirstUser = await getIsFirstUser();
+  database: process.env.POSTGRES_URL 
+    ? drizzleAdapter(pgDb, {
+        provider: "pg",
+        schema: {
+          user: UserTable,
+          session: SessionTable,
+          account: AccountTable,
+          verification: VerificationTable,
+        },
+      })
+    : undefined, // Use in-memory storage when no PostgreSQL
+  ...(process.env.POSTGRES_URL && {
+    databaseHooks: {
+      user: {
+        create: {
+          before: async (user) => {
+            // This hook ONLY runs during user creation (sign-up), not on sign-in
+            // Use our optimized getIsFirstUser function with caching
+            const isFirstUser = await getIsFirstUser();
 
-          // Set role based on whether this is the first user
-          const role = isFirstUser ? USER_ROLES.ADMIN : DEFAULT_USER_ROLE;
+            // Set role based on whether this is the first user
+            const role = isFirstUser ? USER_ROLES.ADMIN : DEFAULT_USER_ROLE;
 
-          logger.info(
-            `User creation hook: ${user.email} will get role: ${role} (isFirstUser: ${isFirstUser})`,
-          );
+            logger.info(
+              `User creation hook: ${user.email} will get role: ${role} (isFirstUser: ${isFirstUser})`,
+            );
 
-          return {
-            data: {
-              ...user,
-              role,
-            },
-          };
+            return {
+              data: {
+                ...user,
+                role,
+              },
+            };
+          },
         },
       },
     },
-  },
+  }),
   emailAndPassword: {
     enabled: emailAndPasswordEnabled,
     disableSignUp: !signUpEnabled,
@@ -146,6 +150,11 @@ export const getIsFirstUser = async () => {
   }
 
   try {
+    // If no PostgreSQL, assume first user for simplicity
+    if (!process.env.POSTGRES_URL) {
+      return true;
+    }
+
     // Direct database query - simple and reliable
     const userCount = await userRepository.getUserCount();
     const isFirstUser = userCount === 0;
